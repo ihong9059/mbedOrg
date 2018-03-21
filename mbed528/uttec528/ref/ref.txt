@@ -1,0 +1,138 @@
+2018.01.03 LoRa Project Start
+
+1. LoRa Channel Setting
+915MHz 대역
+905~925MHz, bandwidth 500KHz, 41Channels, 40th Channel is setting channel.
+
+Tx Test data: 2018.01.03 11:00
+bandwidth: 250KHz				500KHz	(10Kbps)				125KHz(2.56Kbs)
+
+64bytes								64bytes											64bytes:
+red:60mSec						red: 28mSec									red: 120mSec
+yellow:8*20= 160mSec			yellow: 130mSec					yellow: 220mSec
+base: 100mSec
+
+32bytes							32bytes												32bytes
+red: 36mSec					red: 18mSec										red: 70mSec
+yellow: 138mSec				yellow:  118mSec						yellow: 170mSec
+
+16bytes							16bytes												16bytes
+red: 25mSec					red: 12mSec										red: 50mSec
+yellow: 125mSec				yellow: 115mSec							yellow: 150mSec
+
+
+2018.01.14
+simSx.cpp 추가
+procSx1276.cpp 수정
+
+2018.01.18
+Rcu 기능 추가
+Uttec Rcu Generator
+Uttec Rcu Decoder
+
+2018.01.22(예제 참조)
+Test Mode정리
+
+		if(my485.isTestDone()){		//For test
+			my485.clearTestDone();
+			uint16_t uiResult = my485.returnTestData();
+//			printf("Test Data: %d\n\r",uiResult);
+			if(uiResult>100) myTest.setTestReceiveFrameByNum(uiResult);
+			else myTest.setTestMyFrameByNum(uiResult);
+		}		
+
+
+	myTest.setTest(myLib, &mProcServer);
+	
+//	my1750.setMode(BH1750_ONE_TIME_LOW_RES_MODE);	
+//	myTest.testTicker();
+	myRcu.setRcuPwm();
+//	myTest.testModAscii();
+//	myTest.testModRtu();
+//	myTest.testRealRtu();
+//	myTest.testRealAscii();
+//	printf("End of testModAscii\n\r");
+
+//	srand(9);
+	
+//		myTest.testMonitor();
+		myTest.testSchedule();
+	while(1){
+		myUtil.setWdtReload();
+		wait(0.5);
+	}
+
+
+2108.01.23 ---> USA BSL Light Test준비
+1. Rf통신 Frame변경(CRC Test)--> Check Sum 방법 변경?
+2. Rf.cpp부분에 Sx관련 함수와 변수 추가: 
+m_SxRxFrame, m_SxTxFrame, SxRxEndFlag
+sendSxInternal, returnSxRxBuf, sendSxRf
+
+-----------LoRa 인접 Channel간섭여부 Test는 어떻게 할것인가?
+
+2018.01.24 
+destination 추가
+typedef struct{
+	uint8_t pid;
+	uint8_t rxtx;
+	uint16_t gid;
+} dst_t;
+목적: Server로 부터 목적지를 지정함으로써 중간 Logic을 단순화
+
+
+2018.01.27
+rs485 and sx1276 edClientAck에 대한 부분 추가 Test필요
+
+2017.02.05 BSL Light Sample debugging
+- Timer rcuTimer; deleted and in Rcu.cpp, insert "static Timer rcuTimer;"
+
+- redefine Test String
+	- t4xxxxT: Received Frame
+	- t5xxxxT: My Address
+	- t6xxxxT: Your Address
+
+2018.03.03
+rs485 input time delay: dimer, switchSensorType
+
+2018.03.06
+modify class monitor,  function: returnMonitor
+
+
+2018.03.09
+add Server request sub command: 
+status(edsCmd_Status: traffic, mac Address, photo)
+poer(edsPowerRead: power)
+
+For traffic: 1cycle/day, traffic count time: 1cycle/3second
+(max: 3*65000= 2days)
+traffic: Ctr_t->Monitor_t(traffic)
+
+mac Address: Trans_t->ping_t(mac[6] 6bytes)
+
+photo: Ctr_t->Monitor_t(photo)
+
+power: Ctr_t->Power_t(Power)
+
+from server: edServerReq and edsControl.. or edsCmd_Status
+
+from client: edClientAck and edsControl.. or edsCmd_Status
+
+
+2018.03.15
+setNoiseBlockTime for Sx1276 send power noise
+setProductType move to UttecUtil for procedure control in prodedure
+
+2018.03.17
+pwm dac i2c enable flag for hardware problems
+		if(testEp.m_enableFlag)
+			testEp.writeDac(sDim.pwm);
+
+2018.03.18
+	in proc485, mySx.sendSxFrame(pFrame);
+
+2018.03.19
+//#define testModePrint 1
+#ifdef testModePrint		
+#endif
+

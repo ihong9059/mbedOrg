@@ -1,0 +1,36 @@
+sx1276 flow
+
+	main
+
+	set objects
+
+	make pointer sturcture of transfer object
+		trasfer ={	*rf,
+				*sx12756,
+				*rs485,
+				*ble,
+				*flash,
+				*pwm	}
+        
+	set pointers for tasks
+
+	forever while
+
+		is Rf input?
+			Rf task(transfer)
+
+		is sx1276 input?
+			sx1276 task(transfer)
+
+		is rs485 input?
+			rs485 task(transfer)
+
+		is ble input?
+			ble task(transfer)
+
+		is one second?
+			oneSec task(transfer)
+
+		is msec?
+			sensor task(transfer)
+			pwm task

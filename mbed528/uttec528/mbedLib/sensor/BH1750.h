@@ -1,0 +1,32 @@
+#ifndef _BH1750_I2C_H
+#define _BH1750_I2C_H
+
+#define DeBH1750Addr       0x46U 	//BH1750
+//#define DeBH1750Addr        (0x46U >> 1)	//BH1750
+
+typedef enum{
+	BH1750_POWER_DOWN=0,
+	BH1750_POWER_ON=0x01,
+	BH1750_RESET=0x07,
+	BH1750_CONTINUOUS_HIGH_RES_MODE=0x10,
+	BH1750_CONTINUOUS_HIGH_RES_MODE_2=0x11,
+	BH1750_CONTINUOUS_LOW_RES_MODE=0x13,
+	BH1750_ONE_TIME_HIGH_RES_MODE=0x20,
+	BH1750_ONE_TIME_HIGH_RES_MODE_2=0x21,
+	BH1750_ONE_TIME_LOW_RES_MODE=0x23,
+} BH1750_Mode_t;
+
+class bh1750
+{
+private:
+	int m_addr;
+
+public:
+	bh1750();
+	bh1750(int);
+	void setMode(BH1750_Mode_t  );
+	uint16_t readBH1750();
+};
+
+
+#endif

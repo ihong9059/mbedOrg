@@ -1,0 +1,13 @@
+.\build\gapscanningparams.o: BLE_API/source/GapScanningParams.cpp
+.\build\gapscanningparams.o: mbed_config.h
+.\build\gapscanningparams.o: BLE_API\ble/Gap.h
+.\build\gapscanningparams.o: BLE_API\ble/BLEProtocol.h
+.\build\gapscanningparams.o: BLE_API\ble/GapAdvertisingData.h
+.\build\gapscanningparams.o: BLE_API\ble/blecommon.h
+.\build\gapscanningparams.o: BLE_API\ble/GapAdvertisingParams.h
+.\build\gapscanningparams.o: BLE_API\ble/GapScanningParams.h
+.\build\gapscanningparams.o: BLE_API\ble/GapEvents.h
+.\build\gapscanningparams.o: BLE_API\ble/CallChainOfFunctionPointersWithContext.h
+.\build\gapscanningparams.o: BLE_API\ble/FunctionPointerWithContext.h
+.\build\gapscanningparams.o: BLE_API\ble/SafeBool.h
+.\build\gapscanningparams.o: BLE_API\ble/deprecate.h

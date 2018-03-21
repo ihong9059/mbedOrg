@@ -1,0 +1,57 @@
+2018.02.05 LoRa Project mbed Copy procedure
+
+1. nrf_delay.h 부분 정리
+
+2. Library 재설정
+
+3. sx1276 simulation 정리
+
+
+mbed environment
+BLE-API
+nRF51822
+proc		== UttecProc
+sensor		== sensor
+SX1276Lib		no
+Test		!= test.cpp이외 제외 또는 test.cpp를 별도로 이동
+Uttec(UttecApp)
+	UttecProc.cpp, UttecSer.cpp삭제
+UttecRf(UttecLib) != uttecLib.h에서 comment 삽입 for sx1276
+	//	sx1276Exe* pSx1276;
+
+main.h
+main4rf.cpp
+sx1276Exe.cpp
+sx1276Exe.h
+
+mbed
+
+copy절차: 
+
+	static simSx* pMySx1276;
+simSx* procSx1276::pMySx1276 = NULL;
+Pyd1788.cpp //#include "nrf_drv_config.h" 
+
+1. SX1276Org copy for backup
+2. delete all file in Library to be modified
+3. project의 해당 directory를 압축(필요한 File들만)
+	** sensor, UttecApp, UttecLib, UttecProc folder copy
+	
+4. UttecProc/procSx1276.h의 
+			#include "simSx.h" remark
+		//	static simSx* pMySx1276; remark
+			static sx1276Exe* pMySx1276;	remark해제
+			
+5. UttecProc/procSx1276.cpp의	remark교체			
+			simSx* procSx1276::pMySx1276 = NULL;
+			//sx1276Exe* procSx1276::pMySx1276 = NULL;
+			
+6. UttecApp/uttecLib.h의 //#include "sx1276Exe.h" remark 삭제
+				//	sx1276Exe* pSx1276;  remark 삭제
+				
+7. mbed의 UttecOrg의 File을 해당 directory에 Copy
+	UttecBle.cpp, UttecBle.h를 UttecApp Directory에
+	
+8. 
+
+9. org--> 
