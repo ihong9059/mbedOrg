@@ -388,7 +388,7 @@
             <File>
               <FileName>newMain.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\newMain.cpp</FilePath>
+              <FilePath>..\..\mbed528\uttec528\newMain.cpp</FilePath>
             </File>
           </Files>
         </Group>

@@ -49,7 +49,8 @@ dac myDac;
 */
 int main(void)
 {
-Serial Uart(p9,p11);
+Serial Uart(p6,p8);
+//Serial Uart(p9,p11);
 	uttecLib_t myLib;	
 	Uart.baud(115200);	
 	printf("\n\rNow New nrf51822 2018.01.15 11:00\n\r");
@@ -132,6 +133,7 @@ UttecLed myLed;
 			myLed.blink(eRfLed, eRfBlink);
 			myRf.clearRxFlag();
 			rfFrame_t* pFrame = myRf.returnRxBuf();
+			printf("&&&&&&&&&&&& isRxDone\r\n");
 			mProcRf.taskRf(pFrame);		
 		}
 
@@ -179,6 +181,8 @@ UttecLed myLed;
 		if(tick_Sec){		
 			tick_Sec = false;			
 			mProcSec.secTask(pMyFrame);	
+			
+			myRf.sendRf(pMyFrame);
 			
 		}		
 	}

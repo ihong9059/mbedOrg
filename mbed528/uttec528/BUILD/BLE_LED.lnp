@@ -1,5 +1,5 @@
 --cpu=Cortex-M4.fp
-".\build\mainforsx1276.o"
+".\build\newmain.o"
 "mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/analogin_api.o"
 "mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/app_error.o"
 "mbed/TARGET_NRF52_DK/TOOLCHAIN_ARM_STD/app_error_weak.o"
