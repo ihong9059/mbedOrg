@@ -34,8 +34,14 @@ Serial Uart(p11, p8);
 	
 	while(1){
 		if(my1Sec){
+			static bool bToggle = false;
 			my1Sec = false;
-			Uart.printf("ulCount = %d\r\n", ulCount++);
+			bToggle = !bToggle;
+			if(bToggle)
+				Uart.putc('-');
+			else
+				Uart.putc('|');
+//			printf("\r\n ulCount = %d\r\n", ulCount++);
 		}
 		if(my485.isTestDone()){
 			my485.clearTestDone();
@@ -45,6 +51,7 @@ Serial Uart(p11, p8);
 			char cTemp;
 			uint16_t uiTemp;
 			uint8_t ucCount = 0;
+			/*
 			for(int i = 0; i<pStatus->count; i++){
 				if(*pData == 44){
 					printf("\r\n");
@@ -62,7 +69,8 @@ Serial Uart(p11, p8);
 				}
 				pData++;
 			}
-			printf("isTestDone\r\n");
+			*/
+			printf(":is Test Done Ok \n");
 		}	
 		/*
 		*/

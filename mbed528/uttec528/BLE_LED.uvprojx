@@ -49,7 +49,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>C:\hex\</OutputDirectory>
-          <OutputName>rfSet_180322_0050</OutputName>
+          <OutputName>rfSet_180325_0800</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -386,9 +386,9 @@
               <FilePath>mbed_config.h</FilePath>
             </File>
             <File>
-              <FileName>mainForSx1276.cpp</FileName>
+              <FileName>newMain.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\mainForSx1276.cpp</FilePath>
+              <FilePath>.\newMain.cpp</FilePath>
             </File>
           </Files>
         </Group>

@@ -192,8 +192,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\mainForSx1276.cpp</PathWithFileName>
-      <FilenameWithoutPath>mainForSx1276.cpp</FilenameWithoutPath>
+      <PathWithFileName>.\newMain.cpp</PathWithFileName>
+      <FilenameWithoutPath>newMain.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
