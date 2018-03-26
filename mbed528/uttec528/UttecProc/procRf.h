@@ -12,6 +12,22 @@
 
 #define DeRfSetTimeout 20
 
+typedef struct{
+	uint8_t cmd;
+	uint16_t start;
+	uint16_t end;
+} rfSet_find_t;
+
+typedef struct{
+	uint8_t cmd;
+	uint16_t gid;
+	uint8_t pid;
+	uint8_t rxtx;
+	uint8_t high;
+	uint8_t low;
+	uint16_t dtime;
+} rfSet_set_t;
+
 class procRf
 {
 private:
@@ -36,9 +52,13 @@ private:
 	void processCmdNewSet(rfFrame_t*);
 	void transferMstGwByRf(rfFrame_t*);
 	void returnToServer(rfFrame_t*);
+	
 public:
 	procRf(uttecLib_t, procServer*);
 	procRf(Flash*, DimmerRf*, mSecExe*);
 	void taskRf(rfFrame_t*);
+
+	void sendFind(rfSet_find_t);
+	void sendSet(rfSet_set_t);
 };
 #endif

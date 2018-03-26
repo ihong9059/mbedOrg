@@ -385,5 +385,44 @@ void procRf::conflictTx(){
 	}
 }
 
+void procRf::sendFind(rfSet_find_t sFind){
+	channel_t chFind;
+	rfFrame_t myRf;
+	memset(&myRf, 0, 32);
+	chFind.SetupMode = false;
+	chFind.Hopping = eNoHopping;
+	chFind.bps = bps_250K;
+	chFind.dbm = dbm_m30;
+	
+	for(uint16_t i = sFind.start; i<sFind.end+1; i++){
+		printf("%d\n",i);
+		chFind.channel = i;
+		pMyRf->changeGroup(chFind);
+		myRf.Cmd.Command = edSearch;
+		pMyRf->sendRf(&myRf);
+	}
+	printf("sendFind Done Ok \n");
+}
+
+void procRf::sendSet(rfSet_set_t sSet){
+	rfFrame_t myRf;
+	memset(&myRf, 0, 32);
+	channel_t chFind;
+	chFind.SetupMode = true;
+	chFind.Hopping = eNoHopping;
+	chFind.bps = bps_250K;
+	chFind.dbm = dbm_p4;
+	chFind.channel = DeSetChannelOld;
+	
+	myRf.MyAddr.GroupAddr = sSet.gid;
+	myRf.MyAddr.PrivateAddr = sSet.pid;
+	myRf.MyAddr.RxTx.iRxTx = sSet.rxtx;
+	myRf.Ctr.High = sSet.high;
+	myRf.Ctr.Low = sSet.low;
+	myRf.Ctr.DTime = sSet.dtime;
+	myRf.Cmd.Command = edNewSet;
+	pMyRf->sendRf(&myRf);	
+	printf("sendSet Done Ok \n");
+}
 
 

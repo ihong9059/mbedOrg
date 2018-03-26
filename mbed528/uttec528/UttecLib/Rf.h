@@ -62,6 +62,7 @@ public:
 	
 	void setSxRxFlag();
 	channel_t getRfFactor();
+	
 };
 
 
